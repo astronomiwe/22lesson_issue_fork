@@ -122,7 +122,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     # Здесь вы можете добавить пути к вашим статическим файлам,
     # если они располагаются вне приложений
-    BASE_DIR / 'catalog/templates/main/home'
+    BASE_DIR / 'static'
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
