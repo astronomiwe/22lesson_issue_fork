@@ -1,24 +1,18 @@
-from django.core.management import BaseCommand
-
-from catalog.models import Product
-
+from django.core.management import BaseCommand, call_command
+from django.db import IntegrityError, ProgrammingError
+from django.conf import settings
 
 class Command(BaseCommand):
 
-    def handle(self, *args, **options):
-        products_list = [
-            {'name': 'Сканер', 'product_discription': 'новый', 'category': 'техника', 'price':'1500', 'date_create': '2023-12-01'},
-            {'name': 'Принтер', 'product_discription': 'бу', 'category': 'техника', 'price': '13500',
-             'date_create': '2023-12-01'},
-            {'name': 'Мышка', 'product_discription': 'новый', 'category': 'техника', 'price': '3000',
-             'date_create': '2023-12-01'}
-
-        ]
-
-        products_for_create = []
-        for product_item in products_list:
-            products_for_create.append(
-                Product(**product_item)
+    def handle(self, *args, **options) -> None:
+        fixtures_path = settings.BASE_DIR.joinpath('data.json')
+        try:
+            call_command('loaddata', fixtures_path)
+        except ProgrammingError:
+            pass
+        except IntegrityError as e:
+            self.stdout.write(f'Invalid Fixtures: {e}', self.style.NOTICE)
+        else:
+            self.stdout.write(
+                'Command have been completed successfully', self.style.SUCCES
             )
-
-            Product.objects.bulk_create(products_for_create)
