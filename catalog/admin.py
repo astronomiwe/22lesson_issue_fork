@@ -11,9 +11,5 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'price', 'category')
-    list_filter = ('name', 'category')
-    search_fields = ('name', 'product_discription')
-
-#Через инструмент shell заполните список категорий, а
-# также выберите список категорий, применив произвольные
-# рассмотренные фильтры. В качестве решения приложите скриншот.
+    list_filter = ('category', )
+    search_fields = ('name', 'description')
