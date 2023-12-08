@@ -16,13 +16,26 @@ def categories(request):
         'object_list': Category.objects.all(),
         'title': 'SkyStore - Все наши товары'
     }
-    return render(request, 'products/categories.html', context)
+    return render(request, 'catalog/categories.html', context)
 
 
 def category_products(request, pk):
     category_item = Category.objects.get(pk=pk)
     context = {
-        'object_list': Product.object.filter(category_id=pk),
+        'object_list': Product.objects.filter(category_id=pk),
         'title': f'SkyStore - Все наши товары {category_item.name}'
     }
-    return render(request, 'products/products.html', context)
+    return render(request, 'catalog/products.html', context)
+
+def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        print(f'{name} ({email}): {message}')
+
+    context = {
+        'title': 'Контакты'
+    }
+
+    return render(request, 'catalog/contact.html', context)
