@@ -12,6 +12,7 @@ class Category(models.Model):
     def __str__(self):
         return f'{self.name}, {self.description}'
 
+
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.RESTRICT)
     name = models.CharField(max_length=100, verbose_name='наименование')
@@ -21,10 +22,9 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Прокдукты'
+
     def __str__(self):
         return f'{self.name}, {self.description}, {self.price}'
-

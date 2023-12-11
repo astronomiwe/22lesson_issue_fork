@@ -1,31 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
-from catalog.models import Category, Product
+from catalog.models import Product
 
 
 def index(request):
     context = {
-        'object_list': Category.objects.all(),
+        'object_list': Product.objects.all(),
         'title': 'SkyStore - Главная'
     }
-    return render(request, 'catalog/index.html', context)
+    return render(request, 'catalog/index.html', context=context)
 
-
-def categories(request):
-    context = {
-        'object_list': Category.objects.all(),
-        'title': 'SkyStore - Все наши товары'
-    }
-    return render(request, 'catalog/categories.html', context)
-
-
-def category_products(request, pk):
-    category_item = Category.objects.get(pk=pk)
-    context = {
-        'object_list': Product.objects.filter(category_id=pk),
-        'title': f'SkyStore - Все наши товары {category_item.name}'
-    }
-    return render(request, 'catalog/products.html', context)
 
 def contact(request):
     if request.method == 'POST':
@@ -39,3 +23,12 @@ def contact(request):
     }
 
     return render(request, 'catalog/contact.html', context)
+
+
+def product(request, pk):
+    get_product = get_object_or_404(Product, id=pk)
+    context = {
+        'object': get_product,
+        'title': 'Продукт'
+    }
+    return render(request, 'catalog/product.html', context=context)
