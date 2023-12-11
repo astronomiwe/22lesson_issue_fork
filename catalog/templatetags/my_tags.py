@@ -7,4 +7,10 @@ register = template.Library()
 def mymedia(val):
     if val:
         return f'/media/{val}'
-    return '#'
+    return '/static/img/photo.png'
+
+@register.simple_tag()
+def media_tag(val):
+    if val:
+        return f'/media/{val}'
+    return '/static/img/photo.png'
