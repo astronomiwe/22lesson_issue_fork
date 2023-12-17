@@ -1,23 +1,29 @@
 {% extends 'catalog/base.html' %}
+{% load my_tags %}
 {% block content %}
-    <div class="col-12 mb-5">
-        <a class="btn btn-outline-primary" href="{% url 'blog:post_create' %}">Add post</a>
-    </div>
-    <div class="row">
+<div class="col-12 mb-5">
+    <a class="btn btn-outline-primary" href="{% url 'blog:post_create' %}">Add post</a>
+</div>
+<div class="row">
         {% for object in object_list %}
-            <div class="col-lg-4">
-
-                <img class="bd-placeholder-img rounded-circle" width="140" height="140"
-                     role="img" aria-label="Placeholder"
-                     src="{{ object.image.url }}" alt="{{ object.title }}">
-                <h2 class="fw-normal">{{ object.title }}</h2>
-                <p>{{ object.content | truncatechars:50 }}</p>
-                <p><a class="btn btn-secondary" href="{% url 'blog:post_detail' object.slug %}">View</a></p>
-                <p><a class="btn btn-secondary" href="{% url 'blog:post_update' object.slug %}">Edit</a></p>
-                <p><a class="btn btn-secondary" href="{% url 'blog:post_delete' object.slug %}">Delete</a>
-                </p>
-
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <img class="card-img-top"
+                     src="{% media_tag object.preview %}"
+                     alt="">
+                <h2 class="fw-noremal"> {{ object.title }}</h2>
+                <p>{{ object.content | truncatechars:69 }}</p>
+                <div class="card-body">
+                    <p class="card-text">{{ object.name|title }}</p><br>
+                    <a href="{% url 'blog:post_detail' object.slug %}" type="button"
+                       class="btn btn-primary form-control mb-2">View</a>
+                    <a href="{% url 'blog:post_update' object.slug %}" type="button"
+                       class="btn btn-primary form-control mb-2">Edit</a>
+                    <a href="{% url 'blog:post_delete' object.slug %}" type="button"
+                       class="btn btn-sm btn-outline-danger">Delete</a>
+                </div>
             </div>
+        </div>
         {% endfor %}
     </div>
-{% endblock %}
+    {% endblock %}
