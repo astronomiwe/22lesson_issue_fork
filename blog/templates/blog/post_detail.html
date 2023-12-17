@@ -1,0 +1,30 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+    <div class="col-12">
+        <div class="row">
+            <div class="col-8">
+                <img src="{{ object.preview.url }}" width="100%" height="100%" alt="{{ object.name }}">
+            </div>
+            <div class="col-md-4">
+                <h2><p>{{ object.title }}</p></h2>
+                <p>{{ object.content }} </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-muted">
+            <p>Views count: {{ object.views_count }}</p>
+            <p>Created at: {{ object.date_published }}</p>
+            <p>Updated at: {{ object.date_modified }}</p>
+        </div>
+
+    </div>
+<div class="d-flex justify-content-between align-items-center">
+    <a href="{% url 'blog:post_list' %}"
+       class="btn btn-sm btn-outline-danger">Вернуться</a>
+</div>
+
+
+
+{% endblock %}
