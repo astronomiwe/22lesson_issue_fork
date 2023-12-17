@@ -11,13 +11,13 @@
                      role="img" aria-label="Placeholder"
                      src="{{ object.image.url }}" alt="{{ object.title }}">
                 <h2 class="fw-normal">{{ object.title }}</h2>
-                <p>{{ object.content | truncatechars:20 }}</p>
-                <p><a class="btn btn-secondary" href="{% url 'blog:post_detail' object.slug %}">View &raquo;</a></p>
-                <p><a class="btn btn-secondary" href="{% url 'blog:post_update' object.slug %">Edit &raquo;</a></p>
-                <p><a class="btn btn-secondary" href="{% url 'blog:post_delete' object.slug %}">Delete &raquo;</a>
+                <p>{{ object.content | truncatechars:50 }}</p>
+                <p><a class="btn btn-secondary" href="{% url 'blog:post_detail' object.slug %}">View</a></p>
+                <p><a class="btn btn-secondary" href="{% url 'blog:post_update' object.slug %}">Edit</a></p>
+                <p><a class="btn btn-secondary" href="{% url 'blog:post_delete' object.slug %}">Delete</a>
                 </p>
 
-            </div><!-- /.col-lg-4 -->
+            </div>
         {% endfor %}
     </div>
 {% endblock %}
