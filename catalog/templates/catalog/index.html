@@ -2,6 +2,9 @@
 {% load my_tags %}
 
 {% block content %}
+<div class="col-12 mb-5">
+    <a class="btn btn-outline-primary" href="{% url 'catalog:create_product' %}">Добавить продукт</a>
+</div>
 <div class="row">
     {% for object in object_list %}
     <div class="col-md-4">
@@ -11,7 +14,12 @@
                  alt="Card image cap">
             <div class="card-body">
                 <p class="card-text">{{ object.name|title }}</p><br>
-                <a href="{% url 'catalog:product' object.pk %}" type="button" class="btn btn-primary form-control mb-2">К товару</a>
+                <a href="{% url 'catalog:view_product' object.pk %}" type="button"
+                   class="btn btn-primary form-control mb-2">View</a>
+                <a href="{% url 'catalog:update_product' object.pk %}" type="button"
+                   class="btn btn-primary form-control mb-2">Edit</a>
+                <a href="{% url 'catalog:delete_product' object.pk %}" type="button"
+                   class="btn btn-sm btn-outline-danger">Delete</a>
             </div>
         </div>
     </div>
