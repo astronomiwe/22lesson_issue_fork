@@ -1,8 +1,8 @@
 from django import forms
-from catalog.models import Product
+from catalog.models import Product, Version
+
 
 class ProductForm(forms.ModelForm):
-
     class Meta:
         model = Product
         fields = ('category', 'name', 'description', 'preview', 'price')
@@ -29,3 +29,26 @@ class ProductForm(forms.ModelForm):
             if word in cleaned_data:
                 raise forms.ValidationError('Данное описание находится в списке запрещенных слов')
         return cleaned_data
+
+
+class ModeratorProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ('name', 'description', 'category')
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            for field_name, fild in self.fields.items():
+                fild.widget.attrs['class'] = 'form-control'
+
+
+class VersionForm(forms.ModelForm):
+    class Meta:
+        model = Version
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, fild in self.fields.items():
+            if field_name != 'activate':
+                fild.widget.attrs['class'] = 'form-control'
