@@ -9,6 +9,12 @@
                  alt="Card image cap">
             <div class="card-body">
                 <p class="card-text">{{ object.name|title }}</p>
+                {% for version in object.version_set.all %}
+                    {% if version.activate %}
+                        <p>Version: {{ version.version_name }}</p>
+                        <p>Version number: {{ version.version_number }}</p>
+                    {% endif %}
+                {% endfor %}
                 <p class="card-text">{{ object.description|truncatechars:100 }}</p>
                 <p class="card-text">{{ object.preview }}</p>
                 <p class="card-text">{{ object.price }} Руб</p>
