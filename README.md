@@ -1,4 +1,5 @@
 ### воспроизводимый пример с багом
+0. Установить зависимости из requirements.txt `pip install -r requirements.txt`
 1. запустить сервер `python manage.py runserver`
 2. залогиниться здесь: 
 ###### `http://127.0.0.1:8000/users/login/` 
