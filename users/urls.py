@@ -1,6 +1,7 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
+from users import views
 from users.apps import UsersConfig
 from users.views import RegisterView, ProfileView
 
