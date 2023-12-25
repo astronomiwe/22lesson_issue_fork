@@ -1,18 +1,23 @@
 {% extends 'catalog/base.html' %}
 
 {% block content %}
-
-<div class="col-md-4">
-    <div class="card mb-4 box-shadow">
-        <h2>Профиль</h2>
-        <div class="card-body">
-            <from method="post">
+<div class="col-12">
+    <form class="row" method="post" enctype="multipart/form-data">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="card-header">
+                <h3 class="card-title">
+                    Профиль
+                </h3>
+            </div>
+            <div class="card-body">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="btn btn-success form-control mb-2">Сохранить</button>
-            </from>
+                <button type="submit" class="btn btn-success">Сохранить</button>
+            </div>
+            <div class="card-footer"></div>
         </div>
-    </div>
+    </form>
 </div>
 
 {% endblock %}
